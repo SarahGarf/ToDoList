@@ -1,6 +1,9 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #5e5b5b;
+    background-image: url('images/téléchargement.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,3 +92,5 @@ button {
                 0 0 50px #891193,
                 0 0 100px #891193;
   }
+
+  
