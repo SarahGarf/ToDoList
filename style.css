@@ -45,30 +45,6 @@ ul {
     padding: 0;
 }
 
-li {
-    padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    margin-bottom: 5px;
-    border-radius: 4px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-li button {
-    background-color: #8b3094;
-    border: none;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 1rem;
-    cursor: pointer;
-}
-
-li button:hover {
-    background-color: #8b3094;
-}
-
 button {
     padding: 10px 20px;
     border: none;
@@ -92,5 +68,37 @@ button {
                 0 0 50px #891193,
                 0 0 100px #891193;
   }
+  li {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li button {
+    background-color: #dc3545;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+li button:hover {
+    background-color: #c82333;
+}
+
+li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+li input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+    color: #ccc;
+}
 
   

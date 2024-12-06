@@ -9,12 +9,16 @@
 </head>
 <body>
     <img style="display: block; position: absolute;" src="images/output-onlinegiftools.gif" width="100">
-        <div class="container">
-            <h1>ToDoList</h1>
-            <input type="text" id="newTask" placeholder="Ajouté une nouvelle tache">
-            <button onclick="addTask()">Add Task</button>
-            <ul id="taskList"></ul>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text" id="newTask" placeholder="Add a new task">
+        <button onclick="addTask()">Add Task</button>
+        <div class="task-columns">
+            <div class="column">
+                <ul id="taskList"></ul>
+            </div>
         </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

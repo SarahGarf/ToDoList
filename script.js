@@ -4,10 +4,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const taskList = document.getElementById('taskList');
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-        tasks.forEach(taskText => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `${taskText} <button onclick="removeTask(this)">Delete</button>`;
-            taskList.appendChild(listItem);
+        tasks.forEach((task, index) => {
+            addTaskToList(taskList, task.text, task.completed);
         });
     }
 
@@ -21,36 +19,54 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
 
         const taskList = document.getElementById('taskList');
-        const listItem = document.createElement('li');
-
-        listItem.innerHTML = `${taskText} <button onclick="removeTask(this)">Delete</button>`;
-        taskList.appendChild(listItem);
+        addTaskToList(taskList, taskText, false);
 
         // Sauvegarder la tâche dans localStorage
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        tasks.push(taskText);
+        tasks.push({ text: taskText, completed: false });
         localStorage.setItem('tasks', JSON.stringify(tasks));
 
         taskInput.value = '';
     }
 
+    function addTaskToList(list, taskText, isCompleted) {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+            <input type="checkbox" id="checkbox-${taskText}" ${isCompleted ? 'checked' : ''} onchange="toggleTask(this)">
+            <label for="checkbox-${taskText}">${taskText}</label>
+            <button onclick="removeTask(this)">Delete</button>
+        `;
+        list.appendChild(listItem);
+    }
+
     function removeTask(button) {
         const listItem = button.parentElement;
-        const taskText = listItem.textContent.replace('Delete', '').trim();
+        const taskText = listItem.textContent.replace('Delete', '').replace(/\s+/g, ' ').trim();
 
-        // Supprimer la tâche de localStorage
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        const updatedTasks = tasks.filter(task => task !== taskText);
+        const updatedTasks = tasks.filter(task => task.text !== taskText);
         localStorage.setItem('tasks', JSON.stringify(updatedTasks));
 
         listItem.remove();
     }
 
-    // Assurez-vous que les fonctions sont disponibles globalement
+    function toggleTask(checkbox) {
+        const listItem = checkbox.parentElement;
+        const taskText = listItem.textContent.replace('Delete', '').replace(/\s+/g, ' ').trim();
+        const isCompleted = checkbox.checked;
+
+        // Mettre à jour localStorage
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        const updatedTasks = tasks.map(task =>
+            task.text === taskText ? { ...task, completed: isCompleted } : task
+        );
+        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+    }
+
+
     window.addTask = addTask;
     window.removeTask = removeTask;
-
-    // Charger les tâches au démarrage
+    window.toggleTask = toggleTask;
     loadTasks();
 });
-    
+
