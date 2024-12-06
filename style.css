@@ -70,7 +70,11 @@ button {
   }
   li {
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-image: url(images/téléchargement.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
     border: 1px solid #ddd;
     margin-bottom: 5px;
     border-radius: 4px;
@@ -98,7 +102,7 @@ li input[type="checkbox"] {
 
 li input[type="checkbox"]:checked + label {
     text-decoration: line-through;
-    color: #ccc;
+    color: #17202a;
 }
 
   
